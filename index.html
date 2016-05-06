@@ -8,8 +8,10 @@
       font-family: sans-serif;
       text-align: center;
       color: #F3FFE2;
+      transition: 1s;
     }
-    .contener{
+
+    body{
       position: absolute;
       margin: auto;
       height: 400px;
@@ -19,22 +21,40 @@
       bottom: 0;
       left: 0;
     }
+
+    html.end {
+      background-color: #EB7F00;
+    }
+
     h1{
       font-size: 14px;
       font-weight: 100;
     }
-    .chrono{
+
+    .chrono,.score {
       font-weight: 800;
       font-size: 100px;
+    }
+
+    div{
+      height: 400px;
+      transition: 0.3s;
+    }
+
+    .off {
+      height: 0px;
+      overflow: hidden;;
     }
   </style>
 </head>
 <body>
-<div class="contener">
+<div class="game">
   <h1>stop the timer at 3000 ms</h1>
   <p class="chrono">0</p>
-  <p>ton score est de :</p>
-  <p class="score"></p>
+</div>
+<div class="end off">
+  <p>your score is</p>
+  <p class="score">10</p>
 </div>
 </body>
 <script type="text/javascript">
@@ -53,14 +73,24 @@
 
   var score = document.querySelector('.score');
 
+  var game = document.querySelector('.game');
+  var end = document.querySelector('.end');
+  var body = document.getElementsByTagName('html')[0];
+
   function click() {
     if(chrono.state == 'waiting'){
       chrono.state = 'running';
+      end.classList.add('off');
+      game.classList.remove('off');
+      body.classList.remove('end');
     }else
     if(chrono.state == 'running'){
       chrono.state = 'waiting';
       checkScore();
       chrono.reInit();
+      game.classList.add('off');
+      end.classList.remove('off');
+      body.classList.add('end');
     }
   }
 

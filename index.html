@@ -4,9 +4,52 @@
   <title>chrono</title>
 </head>
 <body>
-  <p class="chrono">00:00</p>
+  <p>stop the timer at 3000 ms</p>
+  <p class="chrono">0</p>
+  <p>ton score est de :</p>
+  <p class="score"></p>
 </body>
 <script type="text/javascript">
+  var chrono = document.querySelector('.chrono');
+  chrono.time = 0;
+  chrono.state = 'waiting';
+  chrono.updateTime = function(interval) {
+    chrono.time += interval;
+  }
+  chrono.draw = function() {
+    this.innerHTML =  this.time;
+  }
+  chrono.reInit = function() {
+    chrono.innerHTML = chrono.time = 0;
+  }
 
+  var score = document.querySelector('.score');
+
+  function click() {
+    if(chrono.state == 'waiting'){
+      chrono.state = 'running';
+    }else
+    if(chrono.state == 'running'){
+      chrono.state = 'waiting';
+      checkScore();
+      chrono.reInit();
+    }
+  }
+
+  var lastTime = Date.now();
+  function update() {
+    var intervalTime = Date.now() - lastTime;
+    lastTime = Date.now();
+    if(chrono.state == 'running') chrono.updateTime(intervalTime)
+    chrono.draw();
+  }
+
+  function checkScore() {
+    var time = Math.abs(chrono.time - 3000);
+    score.innerHTML = time;
+  }
+
+  window.addEventListener('click', click);
+  setInterval(update, 10);
 </script>
 </html>

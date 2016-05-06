@@ -2,12 +2,40 @@
 <html>
 <head>
   <title>chrono</title>
+  <style type="text/css">
+    html{
+      background-color: #1695A3;
+      font-family: sans-serif;
+      text-align: center;
+      color: #F3FFE2;
+    }
+    .contener{
+      position: absolute;
+      margin: auto;
+      height: 400px;
+      width: 50%;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+    }
+    h1{
+      font-size: 14px;
+      font-weight: 100;
+    }
+    .chrono{
+      font-weight: 800;
+      font-size: 100px;
+    }
+  </style>
 </head>
 <body>
-  <p>stop the timer at 3000 ms</p>
+<div class="contener">
+  <h1>stop the timer at 3000 ms</h1>
   <p class="chrono">0</p>
   <p>ton score est de :</p>
   <p class="score"></p>
+</div>
 </body>
 <script type="text/javascript">
   var chrono = document.querySelector('.chrono');

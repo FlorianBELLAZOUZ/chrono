@@ -48,14 +48,13 @@
   </style>
 </head>
 <body>
-<div class="game">
-  <h1>stop the timer at 3000 ms</h1>
-  <p class="chrono">0</p>
-</div>
-<div class="end off">
-  <p>your score is</p>
-  <p class="score">10</p>
-</div>
+  <h1 class="text">stop the timer at 3000 ms</h1>
+  <div class="game">
+    <p class="chrono">0</p>
+  </div>
+  <div class="end off">
+    <p class="score">10</p>
+  </div>
 </body>
 <script type="text/javascript">
   var chrono = document.querySelector('.chrono');
@@ -76,6 +75,7 @@
   var game = document.querySelector('.game');
   var end = document.querySelector('.end');
   var body = document.getElementsByTagName('html')[0];
+  var text = document.querySelector('.text');
 
   function click() {
     if(chrono.state == 'waiting'){
@@ -83,6 +83,7 @@
       end.classList.add('off');
       game.classList.remove('off');
       body.classList.remove('end');
+      text.innerHTML = 'stop the timer at 3000 ms';
     }else
     if(chrono.state == 'running'){
       chrono.state = 'waiting';
@@ -91,6 +92,7 @@
       game.classList.add('off');
       end.classList.remove('off');
       body.classList.add('end');
+      text.innerHTML = 'your score is';
     }
   }
 
